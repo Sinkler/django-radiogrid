@@ -32,7 +32,7 @@ In your models.py
 
 ::
 
-    from radiogrid import RadioGridFormField
+    from radiogrid import RadioGridField
 
     ...
 

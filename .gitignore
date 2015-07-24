@@ -1,0 +1,10 @@
+*.log
+*.pot
+*.pyc
+local_settings.py
+*.py~
+*.egg-info
+.idea
+build
+dist
+venv

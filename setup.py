@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import radiogrid
 from setuptools import setup, find_packages
 
 
@@ -9,7 +10,7 @@ def read(filename):
 
 setup(
     name="django-radiogrid",
-    version="0.1.0",
+    version=radiogrid.__version__,
     author="Anton Shurashov",
     author_email="sinkler@sinkler.ru",
     description="Django radio grid field",

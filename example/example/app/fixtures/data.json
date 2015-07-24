@@ -17,7 +17,7 @@
       "is_active": true,
       "is_superuser": true,
       "is_staff": true,
-      "last_login": null,
+      "last_login": "2015-07-24T13:23:24.785Z",
       "groups": [],
       "user_permissions": [],
       "password": "pbkdf2_sha256$20000$0IGd030gONiK$rvzJf3iod/FzkggydpydmlI+qvFHSm+FXZUY91MUeOc=",

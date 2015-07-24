@@ -14,7 +14,7 @@ Installation
 
 ::
 
-    pip install -e git+https://github.com/Sinkler/django-radiogrid#egg=django-radiogrid
+    pip install django-radiogrid
 
 In your settings.py
 -------------------

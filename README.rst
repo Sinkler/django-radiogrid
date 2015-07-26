@@ -9,8 +9,6 @@ With this you can create a radio grid field:
 .. image:: https://api.monosnap.com/rpc/file/download?id=4rJ1neeFuwSMlonpWaQyd65LPR9R62
     :target: https://api.monosnap.com/rpc/file/download?id=4rJ1neeFuwSMlonpWaQyd65LPR9R62
 
-The widget works correctly only with Django 1.8 at the moment.
-
 Installation
 ============
 
@@ -36,7 +34,7 @@ In your models.py
 
     from radiogrid import RadioGridField
 
-    ...
+    # ...
 
     ROWS = (
         (1, 'First'),
@@ -53,7 +51,7 @@ In your models.py
 
     class MyModel(models.Model):
 
-        .....
+        # ...
 
         my_grid = RadioGridField(rows=ROWS, values=VALUES, require_all_fields=True)
 
@@ -72,3 +70,4 @@ You can run it as usual:
     ./manage.py migrate
     ./manage.py loaddata data
     ./manage.py runserver
+    ./manage.py tests

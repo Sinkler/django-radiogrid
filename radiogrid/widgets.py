@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import re
+
+from django import VERSION
 from django.forms.widgets import RadioSelect, MultiWidget, RadioFieldRenderer
 from django.utils.safestring import mark_safe
 from django.template.loader import render_to_string
@@ -13,6 +16,14 @@ class RadioChoiceFieldRenderer(RadioFieldRenderer):
         attrs['class'] = ''
         super(RadioChoiceFieldRenderer, self).__init__(name, value, attrs, choices)
 
+    def render(self):
+        rendered = super(RadioChoiceFieldRenderer, self).render()
+        if VERSION < (1, 8):
+            rendered = rendered.replace('li', 'td')
+            rendered = re.compile(r'<ul.+>|</ul>').sub('', rendered)
+            rendered = mark_safe(rendered)
+        return rendered
+
 
 class RadioRadioSelect(RadioSelect):
     renderer = RadioChoiceFieldRenderer
@@ -24,22 +35,14 @@ class RadioGridWidget(MultiWidget):
     def __init__(self, rows, values, attrs=None):
         self.rows = rows
         self.values = values
-        choices = []
-        for k, v in values:
-            choices.append((k, ''))
-        widgets = []
-        for _ in rows:
-            widgets.append(RadioRadioSelect(choices=choices, attrs=attrs))
+        choices = [(k, '') for k, _ in values]
+        widgets = [RadioRadioSelect(choices=choices, attrs=attrs) for _ in rows]
         super(RadioGridWidget, self).__init__(widgets, attrs)
 
     def decompress(self, value):
-        if not value:
-            values = []
-            for _ in self.rows:
-                values.append(None)
-            return values
-        else:
+        if value:
             return value.split(',')
+        return [None for _ in self.rows]
 
     def format_output(self, rendered_widgets):
         widgets = {}

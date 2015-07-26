@@ -5,6 +5,7 @@ import sys
 from django.core.exceptions import ValidationError
 from django.db.models import TextField, SubfieldBase
 
+from .compat import add_metaclass
 from .fields import RadioGridFormField
 
 
@@ -79,6 +80,5 @@ class RadioGridField(TextField):
         return [key for key, _ in self.values]
 
 
-if int(sys.version_info[0]) > 2:
-    from .compat import add_metaclass
+if sys.version_info[0] > 2:
     RadioGridField = add_metaclass(SubfieldBase)(RadioGridField)

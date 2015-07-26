@@ -1,6 +1,9 @@
 django-radiogrid
 ================
 
+.. image:: https://travis-ci.org/Sinkler/django-radiogrid.svg
+    :target: https://travis-ci.org/Sinkler/django-radiogrid
+
 .. image:: https://badge.fury.io/py/django-radiogrid.png
     :target: https://badge.fury.io/py/django-radiogrid
 

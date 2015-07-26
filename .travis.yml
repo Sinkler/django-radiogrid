@@ -1,10 +1,16 @@
 language: python
 
 install:
-  - pip install -q --use-mirrors tox coveralls
+  - pip install tox coveralls
 
 script:
+  - coverage erase
   - tox
+
+after_success:
+  - coverage combine
+  - coverage report
+  - coveralls
 
 notifications:
   email:

@@ -4,8 +4,8 @@ django-radiogrid
 .. image:: https://travis-ci.org/Sinkler/django-radiogrid.svg
     :target: https://travis-ci.org/Sinkler/django-radiogrid
 
-.. image:: http://coveralls.io/repos/Sinkler/django-radiogrid/badge.svg?branch=master&service=github
-    :target: http://coveralls.io/github/Sinkler/django-radiogrid?branch=master
+.. image:: https://coveralls.io/repos/Sinkler/django-radiogrid/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/Sinkler/django-radiogrid?branch=master
 
 .. image:: https://badge.fury.io/py/django-radiogrid.png
     :target: https://badge.fury.io/py/django-radiogrid

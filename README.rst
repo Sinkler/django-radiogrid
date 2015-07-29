@@ -28,6 +28,7 @@ In your settings.py
 ::
 
     INSTALLED_APPS = (
+
         # ...
 
         'radiogrid',
@@ -76,4 +77,4 @@ You can run it as usual:
     ./manage.py migrate
     ./manage.py loaddata data
     ./manage.py runserver
-    ./manage.py tests
+    ./manage.py test

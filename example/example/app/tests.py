@@ -13,14 +13,21 @@ class MultiSelectTestCase(TestCase):
         self.assertEqual(Octodex.objects.filter(categories__contains='crash').count(), 0)
 
     def test_form(self):
-        form_class = modelform_factory(Octodex, fields=['title', 'categories'])
-        self.assertEqual(len(form_class.base_fields), 2)
+        form_class = modelform_factory(Octodex, fields=['title', 'categories', 'week'])
+        self.assertEqual(len(form_class.base_fields), 3)
 
         form = form_class({
             'title': 'new octodex',
             'categories_0': 'work',
             'categories_1': 'pyha',
-            'categories_2': 'food'
+            'categories_2': 'food',
+            'week_0': '5',
+            'week_1': '4',
+            'week_2': '3',
+            'week_3': '2',
+            'week_4': '1',
+            'week_5': '2',
+            'week_6': '3',
         })
         self.assertTrue(form.is_valid())
 
@@ -28,7 +35,14 @@ class MultiSelectTestCase(TestCase):
             'title': 'new octodex',
             'categories_0': 'die',
             'categories_1': 'phpforum',
-            'categories_2': 'depression'
+            'categories_2': 'depression',
+            'week_0': '11',
+            'week_1': '23',
+            'week_2': '34',
+            'week_3': '666',
+            'week_4': '74',
+            'week_5': '123',
+            'week_6': '9',
         })
         self.assertFalse(form.is_valid())
 
@@ -38,8 +52,16 @@ class MultiSelectTestCase(TestCase):
         self.assertEqual(octodex.get_categories_display(), 'Pyha, Work, Happy')
         self.assertEqual(octodex.get_categories_list(), ['Pyha', 'Work', 'Happy'])
 
+        self.assertEqual(octodex.get_week_display(),
+                         '2-3 hours, 3-4 hours, 5-7 hours, 8 hours, Never, 8 hours, 5-7 hours')
+        self.assertEqual(octodex.get_week_list(),
+                         ['2-3 hours', '3-4 hours', '5-7 hours', '8 hours', 'Never', '8 hours', '5-7 hours'])
+
         self.assertEqual(octodex.get_categories_list(), octodex.get_categories_display().split(', '))
         self.assertEqual(octodex.get_categories_list(), octodex.get_categories_display().split(', '))
+
+        self.assertEqual(octodex.get_week_list(), octodex.get_week_display().split(', '))
+        self.assertEqual(octodex.get_week_list(), octodex.get_week_display().split(', '))
 
     def test_validate(self):
         octodex = Octodex.objects.get(id=1)
@@ -48,7 +70,13 @@ class MultiSelectTestCase(TestCase):
             raise AssertionError()
         except ValidationError:
             pass
+        try:
+            Octodex._meta.get_field_by_name('week')[0].clean(['13', '666'], octodex)
+            raise AssertionError()
+        except ValidationError:
+            pass
 
     def test_serializer(self):
         octodex = Octodex.objects.get(id=1)
         self.assertEqual(Octodex._meta.get_field_by_name('categories')[0].value_to_string(octodex), 'pyha,work,happy')
+        self.assertEqual(Octodex._meta.get_field_by_name('week')[0].value_to_string(octodex), '1,2,3,4,5,4,3')

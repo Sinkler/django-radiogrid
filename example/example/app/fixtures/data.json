@@ -4,7 +4,8 @@
     "model": "app.octodex",
     "fields": {
       "title": "My cat",
-      "categories": "pyha,work,happy"
+      "categories": "pyha,work,happy",
+      "week": "1,2,3,4,5,4,3"
     }
   },
   {

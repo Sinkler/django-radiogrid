@@ -48,9 +48,9 @@ class RadioGridField(TextField):
         return self.get_prep_value(self._get_val_from_obj(obj))
 
     def validate(self, value, model_instance):
-        values = self.get_values_keys()
+        allowed_values = [str(key) for key, _ in self.values]
         for v in value:
-            if v not in values:
+            if str(v) not in allowed_values:
                 raise ValidationError(self.error_messages['invalid_choice'] % {"value": value})
 
     def contribute_to_class(self, cls, name, virtual_only=False):
@@ -75,9 +75,6 @@ class RadioGridField(TextField):
 
         setattr(cls, 'get_%s_list' % self.name, get_list)
         setattr(cls, 'get_%s_display' % self.name, get_display)
-
-    def get_values_keys(self):
-        return [key for key, _ in self.values]
 
 
 if sys.version_info[0] > 2:

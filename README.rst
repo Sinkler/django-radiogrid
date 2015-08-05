@@ -7,8 +7,17 @@ django-radiogrid
 .. image:: https://coveralls.io/repos/Sinkler/django-radiogrid/badge.svg?branch=master&service=github
     :target: https://coveralls.io/github/Sinkler/django-radiogrid?branch=master
 
-.. image:: https://badge.fury.io/py/django-radiogrid.png
-    :target: https://badge.fury.io/py/django-radiogrid
+.. image:: https://codeclimate.com/github/Sinkler/django-radiogrid/badges/gpa.svg
+    :target: https://codeclimate.com/github/Sinkler/django-radiogrid
+
+.. image:: https://img.shields.io/pypi/l/django-radiogrid.svg
+    :target: https://pypi.python.org/pypi/django-radiogrid
+
+.. image:: https://img.shields.io/pypi/v/django-radiogrid.svg
+    :target: https://pypi.python.org/pypi/django-radiogrid
+
+.. image:: https://img.shields.io/pypi/dm/django-radiogrid.svg
+    :target: https://pypi.python.org/pypi/django-radiogrid
 
 With this you can create a radio grid field:
 

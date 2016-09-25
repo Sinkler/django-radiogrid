@@ -1,11 +1,22 @@
 # -*- coding: utf-8 -*-
 
-def add_metaclass(metaclass):
-    def wrapper(cls):
-        orig_vars = cls.__dict__.copy()
-        orig_vars.pop('__dict__', None)
-        orig_vars.pop('__weakref__', None)
-        for slots_var in orig_vars.get('__slots__', ()):
-            orig_vars.pop(slots_var)
-        return metaclass(cls.__name__, cls.__bases__, orig_vars)
-    return wrapper
+import re
+
+from django import VERSION
+from django.utils import six
+from django.utils.safestring import mark_safe
+
+
+def add_meta_class(field):
+    if VERSION < (1, 8):
+        from django.db.models import SubfieldBase
+        return six.add_metaclass(SubfieldBase)(field)
+    return field
+
+
+def widget_render(rendered):
+    if VERSION < (1, 8):
+        rendered = rendered.replace('li', 'td')
+        rendered = re.compile(r'<ul.+>|</ul>').sub('', rendered)
+        return mark_safe(rendered)
+    return rendered

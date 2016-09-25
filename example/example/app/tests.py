@@ -1,8 +1,17 @@
+from django import VERSION
 from django.core.exceptions import ValidationError
 from django.forms.models import modelform_factory
 from django.test import TestCase
 
 from example.app.models import Octodex
+
+
+if VERSION < (1, 9):
+    def get_field(model, name):
+        return model._meta.get_field_by_name(name)[0]
+else:
+    def get_field(model, name):
+        return model._meta.get_field(name)
 
 
 class MultiSelectTestCase(TestCase):
@@ -66,17 +75,17 @@ class MultiSelectTestCase(TestCase):
     def test_validate(self):
         octodex = Octodex.objects.get(id=1)
         try:
-            Octodex._meta.get_field_by_name('categories')[0].clean(['phpforum', 'work'], octodex)
+            get_field(Octodex, 'categories').clean(['phpforum', 'work'], octodex)
             raise AssertionError()
         except ValidationError:
             pass
         try:
-            Octodex._meta.get_field_by_name('week')[0].clean(['13', '666'], octodex)
+            get_field(Octodex, 'week').clean(['13', '666'], octodex)
             raise AssertionError()
         except ValidationError:
             pass
 
     def test_serializer(self):
         octodex = Octodex.objects.get(id=1)
-        self.assertEqual(Octodex._meta.get_field_by_name('categories')[0].value_to_string(octodex), 'pyha,work,happy')
-        self.assertEqual(Octodex._meta.get_field_by_name('week')[0].value_to_string(octodex), '1,2,3,4,5,4,3')
+        self.assertEqual(get_field(Octodex, 'categories').value_to_string(octodex), 'pyha,work,happy')
+        self.assertEqual(get_field(Octodex, 'week').value_to_string(octodex), '1,2,3,4,5,4,3')

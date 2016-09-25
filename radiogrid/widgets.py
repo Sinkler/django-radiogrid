@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import re
-
-from django import VERSION
 from django.forms.widgets import RadioSelect, MultiWidget, RadioFieldRenderer
 from django.utils.safestring import mark_safe
 from django.template.loader import render_to_string
+
+from radiogrid.compat import widget_render
 
 
 class RadioChoiceFieldRenderer(RadioFieldRenderer):
@@ -18,11 +17,7 @@ class RadioChoiceFieldRenderer(RadioFieldRenderer):
 
     def render(self):
         rendered = super(RadioChoiceFieldRenderer, self).render()
-        if VERSION < (1, 8):
-            rendered = rendered.replace('li', 'td')
-            rendered = re.compile(r'<ul.+>|</ul>').sub('', rendered)
-            rendered = mark_safe(rendered)
-        return rendered
+        return widget_render(rendered)
 
 
 class RadioRadioSelect(RadioSelect):

@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import sys
-
 from django.core.exceptions import ValidationError
-from django.db.models import TextField, SubfieldBase
+from django.db.models import TextField
 
-from .compat import add_metaclass
+from .compat import add_meta_class
 from .fields import RadioGridFormField
 
 
 class RadioGridField(TextField):
-    __metaclass__ = SubfieldBase
-
     def __init__(self, *args, **kwargs):
         self.rows = kwargs.pop('rows')
         self.values = kwargs.pop('values')
@@ -25,6 +21,9 @@ class RadioGridField(TextField):
         kwargs['values'] = self.values
         kwargs['require_all_fields'] = self.require_all_fields
         return name, path, args, kwargs
+
+    def from_db_value(self, value, expression, connection, context):
+        return self.to_python(value)
 
     def to_python(self, value):
         if value:
@@ -77,5 +76,4 @@ class RadioGridField(TextField):
         setattr(cls, 'get_%s_display' % self.name, get_display)
 
 
-if sys.version_info[0] > 2:
-    RadioGridField = add_metaclass(SubfieldBase)(RadioGridField)
+RadioGridField = add_meta_class(RadioGridField)

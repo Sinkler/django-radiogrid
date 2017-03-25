@@ -4,7 +4,12 @@
 local_settings.py
 *.py~
 *.egg-info
+*.db
 .idea
+.coverage
+.coverage.*
+.tox
+coverage
 build
 dist
 venv

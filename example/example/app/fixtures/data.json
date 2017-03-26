@@ -9,6 +9,14 @@
     }
   },
   {
+    "pk": 1,
+    "model": "app.octoduck",
+    "fields": {
+      "title": "My duck",
+      "week": "1,2,duck,4,5,4,3"
+    }
+  },
+  {
     "model": "auth.user",
     "pk": 1,
     "fields": {

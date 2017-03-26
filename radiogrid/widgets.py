@@ -37,6 +37,10 @@ if VERSION < (1, 11):
             widgets = [RadioRadioSelect(choices=choices, attrs=attrs) for _ in rows]
             super(RadioGridWidget, self).__init__(widgets, attrs)
 
+        def render(self, name, value, attrs=None):
+            print('###', name, value)
+            return super().render(name, value, attrs)
+
         def decompress(self, value):
             if value:
                 return value.split(',')

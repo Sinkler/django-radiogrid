@@ -3,7 +3,9 @@ from django.core.exceptions import ValidationError
 from django.forms.models import modelform_factory
 from django.test import TestCase
 
-from example.app.models import Octodex
+from radiogrid import RadioGridWidget
+
+from example.app.models import Octodex, Octoduck, WEEK_ROWS, WEEK_VALUES
 
 
 if VERSION < (1, 9):
@@ -55,6 +57,8 @@ class MultiSelectTestCase(TestCase):
         })
         self.assertFalse(form.is_valid())
 
+        self.assertTrue(form.as_p())
+
     def test_object(self):
         octodex = Octodex.objects.get(id=1)
 
@@ -71,6 +75,10 @@ class MultiSelectTestCase(TestCase):
 
         self.assertEqual(octodex.get_week_list(), octodex.get_week_display().split(', '))
         self.assertEqual(octodex.get_week_list(), octodex.get_week_display().split(', '))
+
+        octoduck = Octoduck.objects.get(id=1)
+        self.assertEqual(octoduck.get_week_display(),
+                         '2-3 hours, 3-4 hours, duck, 8 hours, Never, 8 hours, 5-7 hours')
 
     def test_validate(self):
         octodex = Octodex.objects.get(id=1)
@@ -89,3 +97,8 @@ class MultiSelectTestCase(TestCase):
         octodex = Octodex.objects.get(id=1)
         self.assertEqual(get_field(Octodex, 'categories').value_to_string(octodex), 'pyha,work,happy')
         self.assertEqual(get_field(Octodex, 'week').value_to_string(octodex), '1,2,3,4,5,4,3')
+
+    def test_widget(self):
+        widget = RadioGridWidget(rows=WEEK_ROWS, values=WEEK_VALUES)
+        self.assertTrue(widget.render('days', 'work,pyha,food'))
+        self.assertTrue(widget.render('days', None))

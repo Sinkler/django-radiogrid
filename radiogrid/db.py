@@ -26,9 +26,7 @@ class RadioGridField(TextField):
         return self.to_python(value)
 
     def to_python(self, value):
-        if value:
-            return value if isinstance(value, list) else value.split(',')
-        return value
+        return value if isinstance(value, list) else value.split(',')
 
     def get_prep_value(self, value):
         return '' if value is None else ','.join(value)
@@ -58,15 +56,14 @@ class RadioGridField(TextField):
         def get_list(obj):
             values = dict(self.values)
             display = []
-            if getattr(obj, name):
-                for value in getattr(obj, name):
-                    item = values.get(value, None)
-                    if item is None:
-                        try:
-                            item = values.get(int(value), value)
-                        except (ValueError, TypeError):
-                            item = value
-                    display.append(item)
+            for value in getattr(obj, name):
+                item = values.get(value, None)
+                if item is None:
+                    try:
+                        item = values.get(int(value), value)
+                    except (ValueError, TypeError):
+                        item = value
+                display.append(item)
             return display
 
         def get_display(obj):

@@ -46,3 +46,23 @@ class Octodex(models.Model):
 
     def __unicode__(self):
         return self.__str__()
+
+
+WEEK_VALUES_DUCK = (
+    (1, '2-3 hours'),
+    (2, '3-4 hours'),
+    ('3', '5-7 hours'),
+    (4, '8 hours'),
+    (5, 'Never'),
+)
+
+
+class Octoduck(models.Model):
+    title = models.CharField(max_length=50)
+    week = RadioGridField(rows=WEEK_ROWS, values=WEEK_VALUES_DUCK, require_all_fields=True)
+
+    def __str__(self):
+        return self.title
+
+    def __unicode__(self):
+        return self.__str__()

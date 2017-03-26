@@ -13,7 +13,11 @@
                 <td>
                     {{ name }}
                 </td>
-                {{ tr }}
+                {% if tr.template_name %}
+                    {% include tr.template_name %}
+                {% else %}
+                    {{ tr }}
+                {% endif %}
             </tr>
         {% endfor %}
     </tbody>

@@ -3,9 +3,11 @@
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import User
-
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 
 
 def app_index(request):

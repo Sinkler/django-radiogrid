@@ -1,0 +1,7 @@
+{% with id=widget.attrs.id %}
+    {% for _, options, _ in tr.optgroups %}
+        {% for option in options %}
+            <td{% if id %} id="{{ id }}"{% endif %}>{% include option.template_name with widget=option %}</td>
+        {% endfor %}
+    {% endfor %}
+{% endwith %}

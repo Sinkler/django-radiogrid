@@ -6,10 +6,6 @@ from django.views.static import serve
 
 admin.autodiscover()
 
-js_info_dict = {
-    'packages': ('django.conf',),
-}
-
 urlpatterns = [
     url(r'^', include('example.app.urls')),
     url(r'^admin/', include(admin.site.urls)),

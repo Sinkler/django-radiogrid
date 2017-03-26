@@ -1,3 +1,4 @@
+from django import VERSION
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
@@ -8,7 +9,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^', include('example.app.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls) if VERSION < (2, 0) else admin.site.urls),
 ]
 
 urlpatterns += [

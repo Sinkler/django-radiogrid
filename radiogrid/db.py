@@ -3,7 +3,7 @@
 from django.core.exceptions import ValidationError
 from django.db.models import TextField
 
-from .compat import add_meta_class
+from .compat import add_meta_class, get_val_from_obj
 from .fields import RadioGridFormField
 
 
@@ -42,7 +42,7 @@ class RadioGridField(TextField):
         return RadioGridFormField(**defaults)
 
     def value_to_string(self, obj):
-        return self.get_prep_value(self._get_val_from_obj(obj))
+        return self.get_prep_value(get_val_from_obj(self, obj))
 
     def validate(self, value, model_instance):
         allowed_values = [str(key) for key, _ in self.values]
@@ -50,8 +50,8 @@ class RadioGridField(TextField):
             if str(v) not in allowed_values:
                 raise ValidationError(self.error_messages['invalid_choice'] % {"value": value})
 
-    def contribute_to_class(self, cls, name, virtual_only=False):
-        super(RadioGridField, self).contribute_to_class(cls, name, virtual_only)
+    def contribute_to_class(self, cls, name, **kwargs):
+        super(RadioGridField, self).contribute_to_class(cls, name, **kwargs)
 
         def get_list(obj):
             values = dict(self.values)

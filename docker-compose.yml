@@ -6,7 +6,7 @@ services:
     image: django-radiogrid
     volumes:
       - ./:/app/
-      - ~/.pypirc:/root/.pypirc
+      - ~/.pypirc:/root/.pypirc:ro
     ports:
       - 8001:8001
 

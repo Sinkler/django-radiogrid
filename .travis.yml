@@ -27,12 +27,12 @@ matrix:
     allow_failures:
         - env: TOXENV=py36-django-master
 install:
-    - pip install tox coveralls
+    - pip install tox codecov
 before_script:
     - coverage erase
 script: tox
 after_success:
-    - coveralls
+    - codecov
 notifications:
     email:
         - sinkler@sinkler.ru

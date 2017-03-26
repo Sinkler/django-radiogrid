@@ -25,7 +25,7 @@ case "$1" in
     python)
         python "${@:2}"
     ;;
-    console)
+    bash)
         bash
     ;;
     *)

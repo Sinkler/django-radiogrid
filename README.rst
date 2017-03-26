@@ -102,6 +102,7 @@ Testing
 
     docker-compose run --rm app test
     docker-compose run --rm app coverage
+    docker-compose run --rm tox tox -e py36-django-master
     docker-compose run --rm tox
 
 Releasing

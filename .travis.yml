@@ -2,9 +2,7 @@ sudo: false
 language: python
 matrix:
     include:
-        - env: TOXENV=py27-django-master
-          python: "2.7"
-        - env: TOXENV=py35-django-master
+        - env: TOXENV=py36-django-master
           python: "3.6"
         - env: TOXENV=py27-django-111
           python: "2.7"
@@ -27,8 +25,7 @@ matrix:
         - env: TOXENV=py34-django-17
           python: "3.4"
     allow_failures:
-        - env: TOXENV=py27-django-master
-        - env: TOXENV=py35-django-master
+        - env: TOXENV=py36-django-master
         - env: TOXENV=py27-django-111
         - env: TOXENV=py35-django-111
 install:

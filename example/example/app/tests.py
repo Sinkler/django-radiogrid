@@ -97,6 +97,7 @@ class MultiSelectTestCase(TestCase):
         octodex = Octodex.objects.get(id=1)
         self.assertEqual(get_field(Octodex, 'categories').value_to_string(octodex), 'pyha,work,happy')
         self.assertEqual(get_field(Octodex, 'week').value_to_string(octodex), '1,2,3,4,5,4,3')
+        self.assertEqual(get_field(Octodex, 'week').value_to_string(None), '')
 
     def test_widget(self):
         widget = RadioGridWidget(rows=WEEK_ROWS, values=WEEK_VALUES)

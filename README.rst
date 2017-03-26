@@ -110,5 +110,5 @@ Releasing
 
 - add a new version description in ``CHANGES.rst``
 - change a version in ``__init__.py``
-- ``docker-compose run --rm app release``
 - add a github release
+- ``docker-compose run --rm app release``

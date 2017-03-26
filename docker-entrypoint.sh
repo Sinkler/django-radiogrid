@@ -6,10 +6,10 @@ pip install -e .
 
 case "$1" in
     test)
-        python example/run_tests.py
+        python example/manage.py test example.app
     ;;
     coverage)
-        coverage run example/run_tests.py
+        coverage run example/manage.py test example.app
         coverage report
         coverage html
     ;;

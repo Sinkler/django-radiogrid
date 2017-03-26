@@ -26,8 +26,6 @@ matrix:
           python: "3.4"
     allow_failures:
         - env: TOXENV=py36-django-master
-        - env: TOXENV=py27-django-111
-        - env: TOXENV=py35-django-111
 install:
     - pip install tox coveralls
 before_script:

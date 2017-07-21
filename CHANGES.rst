@@ -1,3 +1,8 @@
+1.0.4 (2017-07-22)
+------------------
+
+* Fixed the parameter require_all_fields=False. Thanks @nmalkin for the patch!
+
 1.0.3 (2017-03-26)
 ------------------
 

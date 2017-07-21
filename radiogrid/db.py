@@ -37,8 +37,8 @@ class RadioGridField(TextField):
             'values': self.values,
             'require_all_fields': self.require_all_fields,
             'label': self.verbose_name,
+            'required': self.require_all_fields,
         }
-        defaults['required'] = self.require_all_fields
         defaults.update(kwargs)
         return RadioGridFormField(**defaults)
 

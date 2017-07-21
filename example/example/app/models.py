@@ -66,3 +66,14 @@ class Octoduck(models.Model):
 
     def __unicode__(self):
         return self.__str__()
+
+
+class OptionalGridModel(models.Model):
+    title = models.CharField(max_length=50)
+    week = RadioGridField(rows=WEEK_ROWS, values=WEEK_VALUES, require_all_fields=False)
+
+    def __str__(self):
+        return self.title
+
+    def __unicode__(self):
+        return self.__str__()

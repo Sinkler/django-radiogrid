@@ -17,6 +17,14 @@
     }
   },
   {
+    "pk": 1,
+    "model": "app.optionalgridmodel",
+    "fields": {
+      "title": "My optional grid",
+      "week": "1,2,,4,5,4,"
+    }
+  },
+  {
     "model": "auth.user",
     "pk": 1,
     "fields": {

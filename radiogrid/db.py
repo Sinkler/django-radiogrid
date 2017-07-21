@@ -38,6 +38,7 @@ class RadioGridField(TextField):
             'require_all_fields': self.require_all_fields,
             'label': self.verbose_name,
         }
+        defaults['required'] = self.require_all_fields
         defaults.update(kwargs)
         return RadioGridFormField(**defaults)
 
@@ -46,6 +47,9 @@ class RadioGridField(TextField):
 
     def validate(self, value, model_instance):
         allowed_values = [str(key) for key, _ in self.values]
+        if not self.require_all_fields:
+            allowed_values += ['']
+
         for v in value:
             if str(v) not in allowed_values:
                 raise ValidationError(self.error_messages['invalid_choice'] % {"value": value})

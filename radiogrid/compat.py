@@ -2,10 +2,9 @@
 
 import re
 
+import six
 from django import VERSION
-from django.utils import six
 from django.utils.safestring import mark_safe
-
 
 def add_meta_class(field):
     if VERSION < (1, 8):

@@ -14,7 +14,9 @@ case "$1" in
         coverage html
     ;;
     release)
-        python setup.py sdist upload
+        python -m build
+        twine check --strict dist/*
+        twine upload dist/*
     ;;
     shell)
         python example/manage.py shell
@@ -22,18 +24,12 @@ case "$1" in
     manage)
         python example/manage.py "${@:2}"
     ;;
-    python)
-        python "${@:2}"
-    ;;
-    tox)
-        tox "${@:2}"
-    ;;
-    bash)
-        bash
-    ;;
-    *)
+    runserver)
         python example/manage.py migrate
         python example/manage.py loaddata data
         python example/manage.py runserver 0.0.0.0:8001
+    ;;
+    *)
+        exec "$@"
     ;;
 esac

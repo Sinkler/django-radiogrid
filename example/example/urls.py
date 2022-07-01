@@ -13,11 +13,14 @@ else:
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^', include('example.app.urls')),
-    url(r'^admin/', include(admin.site.urls) if VERSION < (2, 0) else admin.site.urls),
+    url(r"^", include("example.app.urls")),
+    url(r"^admin/", include(admin.site.urls) if VERSION < (2, 0) else admin.site.urls),
 ]
 
 urlpatterns += [
-    url(r'^%s(?P<path>.*)$' % settings.MEDIA_URL[1:], serve,
-        {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+    url(
+        r"^%s(?P<path>.*)$" % settings.MEDIA_URL[1:],
+        serve,
+        {"document_root": settings.MEDIA_ROOT, "show_indexes": True},
+    ),
 ]

@@ -13,6 +13,7 @@ DATABASES = {
         'PORT': '',
     }
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 ALLOWED_HOSTS = ['localhost']
 TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
@@ -39,46 +40,29 @@ MIDDLEWARE_CLASSES = (
 MIDDLEWARE = MIDDLEWARE_CLASSES
 ROOT_URLCONF = 'example.urls'
 WSGI_APPLICATION = 'example.wsgi.application'
-if VERSION < (1, 9):
-    TEMPLATE_DEBUG = DEBUG
-    TEMPLATE_LOADERS = (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        'django.contrib.auth.context_processors.auth',
-        'django.core.context_processors.debug',
-        'django.core.context_processors.i18n',
-        'django.core.context_processors.media',
-        'django.core.context_processors.request',
-        'django.core.context_processors.tz',
-        'django.core.context_processors.static',
-        'django.contrib.messages.context_processors.messages',
-    )
-else:
-    TEMPLATES = [
-        {
-            'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [],
-            'OPTIONS': {
-                'context_processors': (
-                    'django.contrib.auth.context_processors.auth',
-                    'django.template.context_processors.debug',
-                    'django.template.context_processors.i18n',
-                    'django.template.context_processors.media',
-                    'django.template.context_processors.request',
-                    'django.template.context_processors.tz',
-                    'django.template.context_processors.static',
-                    'django.contrib.messages.context_processors.messages',
-                ),
-                'debug': DEBUG,
-                'loaders': (
-                    'django.template.loaders.filesystem.Loader',
-                    'django.template.loaders.app_directories.Loader',
-                ),
-            },
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'OPTIONS': {
+            'context_processors': (
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.request',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.static',
+                'django.contrib.messages.context_processors.messages',
+            ),
+            'debug': DEBUG,
+            'loaders': (
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ),
         },
-    ]
+    },
+]
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',

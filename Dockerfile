@@ -1,8 +1,8 @@
-FROM python:3.6
+FROM python:3.10.4-slim-buster
 
-ENV PYTHONUNBUFFERED=1 ENVIRONMENT=DOCKER
+ENV PYTHONUNBUFFERED=1 ENVIRONMENT=DOCKER PYTHONPATH="${PYTHONPATH}:/app/"
 
-RUN pip install --no-cache-dir django coverage
+RUN pip install --upgrade pip && pip install --no-cache-dir django coverage tox
 
 WORKDIR /app
 

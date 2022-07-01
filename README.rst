@@ -1,9 +1,6 @@
 django-radiogrid
 ================
 
-.. image:: https://travis-ci.org/Sinkler/django-radiogrid.svg
-    :target: https://travis-ci.org/Sinkler/django-radiogrid
-
 .. image:: https://codecov.io/gh/Sinkler/django-radiogrid/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/Sinkler/django-radiogrid
 
@@ -102,8 +99,7 @@ Testing
 
     docker-compose run --rm app test
     docker-compose run --rm app coverage
-    docker-compose run --rm tox tox -e py36-django-master
-    docker-compose run --rm tox
+    docker-compose run --rm app tox -e py310-django-master
 
 Releasing
 ---------

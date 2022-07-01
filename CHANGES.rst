@@ -1,3 +1,10 @@
+1.1.0 (2022-07-01)
+------------------
+
+* Updated for Django 4.0. Thanks @Milutinke92 for the patch!
+* Drop support for non-LTS Django versions.
+* Drop support for old Python 3 versions.
+
 1.0.4 (2017-07-22)
 ------------------
 

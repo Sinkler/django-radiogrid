@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+
 try:
     from django.core.urlresolvers import reverse
 except ImportError:
@@ -11,8 +12,8 @@ except ImportError:
 
 
 def app_index(request):
-    user = User.objects.get(username='admin')
-    if not hasattr(user, 'backend'):
+    user = User.objects.get(username="admin")
+    if not hasattr(user, "backend"):
         user.backend = settings.AUTHENTICATION_BACKENDS[0]
     login(request, user)
-    return HttpResponseRedirect(reverse('admin:app_octodex_change', args=(1,)))
+    return HttpResponseRedirect(reverse("admin:app_octodex_change", args=(1,)))

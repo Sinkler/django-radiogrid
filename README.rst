@@ -15,8 +15,8 @@ django-radiogrid
 
 With this you can create a radio grid field:
 
-.. image:: https://api.monosnap.com/rpc/file/download?id=4rJ1neeFuwSMlonpWaQyd65LPR9R62
-    :target: https://api.monosnap.com/rpc/file/download?id=4rJ1neeFuwSMlonpWaQyd65LPR9R62
+.. image:: screenshot.png
+    :target: screenshot.png
 
 Installation
 ============

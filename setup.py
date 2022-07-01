@@ -21,7 +21,7 @@ setup(
     author_email="sinkler@sinkler.ru",
     description="Django radio grid field",
     long_description=(read('README.rst') + '\n\n' + read('CHANGES.rst')),
-    install_requires = ['django>=1.7.0'],
+    install_requires = ['django>=1.7.0', 'six>=1.16.0'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Framework :: Django',

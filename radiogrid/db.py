@@ -3,7 +3,7 @@
 from django.core.exceptions import ValidationError
 from django.db.models import TextField
 
-from .compat import add_meta_class, get_val_from_obj
+from .compat import get_val_from_obj
 from .fields import RadioGridFormField
 
 
@@ -22,7 +22,7 @@ class RadioGridField(TextField):
         kwargs['require_all_fields'] = self.require_all_fields
         return name, path, args, kwargs
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, *args, **kwargs):
         return self.to_python(value)
 
     def to_python(self, value):
@@ -76,5 +76,3 @@ class RadioGridField(TextField):
         setattr(cls, 'get_%s_list' % self.name, get_list)
         setattr(cls, 'get_%s_display' % self.name, get_display)
 
-
-RadioGridField = add_meta_class(RadioGridField)

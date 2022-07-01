@@ -1,4 +1,4 @@
-version: '3'
+version: "Э.8"
 
 services:
   app:
@@ -9,8 +9,3 @@ services:
       - ~/.pypirc:/root/.pypirc:ro
     ports:
       - 8001:8001
-
-  tox:
-    image: themattrix/tox
-    volumes:
-      - ./:/app/

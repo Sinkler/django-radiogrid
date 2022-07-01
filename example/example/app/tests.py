@@ -1,4 +1,3 @@
-from django import VERSION
 from django.core.exceptions import ValidationError
 from django.forms.models import modelform_factory
 from django.test import TestCase
@@ -8,12 +7,8 @@ from radiogrid import RadioGridWidget
 from example.app.models import Octodex, Octoduck, OptionalGridModel, WEEK_ROWS, WEEK_VALUES
 
 
-if VERSION < (1, 9):
-    def get_field(model, name):
-        return model._meta.get_field_by_name(name)[0]
-else:
-    def get_field(model, name):
-        return model._meta.get_field(name)
+def get_field(model, name):
+    return model._meta.get_field(name)
 
 
 class MultiSelectTestCase(TestCase):
